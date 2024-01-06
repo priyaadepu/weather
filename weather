@@ -1,0 +1,18 @@
+//JavaScript code to test the latitude and longitude:
+
+pm.test("Latitude and longitude check", function() {
+    pm.response.to.have.jsonBody('coord.lat', 51.51);
+    pm.response.to.have.jsonBody('coord.lon', -0.13);
+});
+//Test for correct city name:
+pm.test("City name check", function() {
+    pm.response.to.have.jsonBody('name', 'London');
+});
+//Test for specific weather condition (e.g., rain):
+pm.test("Weather condition check", function() {
+    pm.response.to.have.jsonBody('weather[0].main', 'Rain');
+});
+// Test for temperature within a range:
+pm.test("Temperature range check", function() {
+    pm.expect(pm.response.json().main.temp).to.be.within(270, 280);
+});
